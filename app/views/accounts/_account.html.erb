@@ -1,0 +1,4 @@
+<tr>
+  <td><%= link_to account.display_name, transactions_path(account_id: account.external_id) %><td>
+  <td class="<%= account.balance_in_cents > 0 ? 'credit' : 'debit' %>" align="right"><%= money account.balance_in_cents, include_sign: false %><td>
+</tr>

@@ -1,0 +1,95 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+body {
+  font-family: Circular Std;
+  font-weight: lighter;
+}
+table {
+  border-collapse: collapse;
+}
+th {
+  background: #fafafa;
+  padding: 10px;
+}
+td {
+  padding: 5px 10px;
+}
+small {
+  font-size: 1em;
+  color: rgba(0,0,0, .5);
+}
+a {
+  color: inherit;
+}
+h1 {
+  margin: 0 0 .5em;
+  font-size: 20px;
+}
+h2 {
+  margin: 0 0 .5em;
+  font-size: 18px;
+}
+.raw {
+  font-family: monospace;
+  font-size: 1.2em;
+  color: rgba(0,0,0, .5);
+}
+.text-right { text-align: right }
+.pull-left { float: left }
+.pull-right { float: right }
+.clear-both { clear: both }
+.clear-right { clear: right }
+
+.round-up {
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px;
+  height: 12px;
+  line-height: 12px;
+  font-size: 8px;
+  border: 2px solid rgb(255, 122, 100);
+  border-radius: 100%;
+  color: rgb(255, 122, 100);
+  text-align: center;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(255, 122, 100);
+}
+.amount {
+  vertical-align: middle;
+}
+.credit { color: #00BC83 }
+.label {
+  background: rgba(0,0,0,.1);
+  border-radius: 3px;
+  padding: 3px 5px;
+  font-size: 12px;
+}
+
+.insights {
+  margin: 0 0 1em;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  align-items: flex-end;
+}
+.insights li {
+  margin-right: 20px;
+}
+
+.card {
+  max-width: 400px;
+}

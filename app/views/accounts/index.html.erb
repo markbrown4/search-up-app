@@ -1,0 +1,12 @@
+
+<h1>Accounts</h1>
+<table>
+  <tr>
+    <th colspan="2" align="left">Transactional<th>
+  </tr>
+  <%= render partial: "account", collection: @transaction_accounts %>
+  <tr>
+    <th colspan="2" align="left">Savers<th>
+  </tr>
+  <%= render partial: "account", collection: @savings_accounts %>
+</table>

@@ -1,0 +1,70 @@
+<h1>Transactions</h1>
+
+<% if @account.present? %>
+<p>Account: <%= @account.display_name %></p>
+<% end %>
+
+<%= form_tag transactions_path, method: :get do |form| %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= hidden_field_tag :account_id, params[:account_id] %>
+    <%= submit_tag 'Search', name: nil %>
+  </p>
+<% end %>
+
+<h2>Insights</h2>
+<ul class="insights">
+  <li>
+    <span><%= number_with_delimiter @count %></span><br>
+    <small>Txns</small>
+  </li>
+  <li>
+    <span class="<%= money_class @average %>"><%= money @average %></span><br>
+    <small>Average</small>
+  </li>
+  <li>
+    <span class="<%= money_class @sum %>"><%= money @sum %></span><br>
+    <small>All time</small>
+  </li>
+  <% if @running_balance.present? %>
+  <li>
+    <svg id="transaction-history" width="500" height="50"></svg>
+  </li>
+  <script>
+  var data = <%= @running_balance.to_json.html_safe %>;
+  </script>
+  <% end %>
+</ul>
+
+<table>
+  <tr>
+    <th align="left">Created At</th>
+    <th align="left">Description</th>
+    <th align="right">Amount</th>
+    <th align="right">Foreign Amount</th>
+    <% if @running_balance.present? %>
+    <th align="right">Running Balance</th>
+    <% end %>
+  </tr>
+<% @transactions.each_with_index do |t, index| %>
+  <tr>
+    <td><%= date t.created_at %></td>
+    <td><%= link_to t.formatted_description, transaction_path(t) %></td>
+    <td class="<%= money_class t.total_amount_in_cents %>">
+      <% if t.round_up? %><span class="round-up">▲</span><% end %>
+      <span class="amount"><%= money t.total_amount_in_cents, include_sign: false %></span>
+    </td>
+  <% if t.foreign_amount_in_base_units %>
+    <td class="<%= money_class t.foreign_amount_in_base_units %>">
+      <%= money t.foreign_amount_in_base_units, t.foreign_currency, include_sign: false %>
+    </td>
+  <% else %>
+    <td></td>
+  <% end %>
+  <% if @running_balance.present? %>
+    <td align="right">
+      <%= money @running_balance[index][0], include_sign: @running_balance[index][0].negative? %></td>
+  <% end %>
+  </tr>
+<% end %>
+</table>

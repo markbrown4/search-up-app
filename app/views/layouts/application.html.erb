@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SearchUpApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <ul>
+      <li class="<%= 'active' if controller_name == 'accounts'%>"><%= link_to 'Accounts', accounts_path %></li>
+      <li class="<%= 'active' if controller_name == 'transactions' %>"><%= link_to 'Transactions', transactions_path %></li>
+    </ul>
+    <%= yield %>
+  </body>
+</html>

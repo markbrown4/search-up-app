@@ -1,0 +1,44 @@
+<div class="card">
+  <h1 class="pull-left"><%= @transaction.description %></h1>
+  <h2 class="<%= money_class @transaction.amount_in_cents %> pull-right">
+    <%= money @transaction.amount_in_cents, include_sign: false %>
+  </h2>
+  <% if @transaction.hold? %>
+  <div class="clear-right pull-right label">PENDING</div>
+  <% end %>
+  <% if @transaction.foreign_amount_in_base_units.present? %>
+    <div class="<%= money_class @transaction.foreign_amount_in_base_units %> clear-right">
+      <%= money @transaction.foreign_amount_in_base_units, @transaction.foreign_currency %>
+    </div>
+  <% end %>
+  <p class="clear-both">
+    <span>Paid on:</span>
+    <span class="pull-right"><%= date @transaction.created_at %></span>
+  </p>
+  <% if @transaction.raw_text.present? %>
+    <p class="raw"><%= @transaction.raw_text %></p>
+  <% end %>
+  <% if @transaction.round_up? %>
+    <ul class="insights">
+      <li>
+        <span>Round up</span>
+      </li>
+      <% if @transaction.round_up_amount_in_cents.present? %>
+      <li>
+        <span><%= money @transaction.round_up_amount_in_cents, include_sign: false %></span><br>
+        <small>Amount</small>
+      </li>
+      <% end %>
+      <% if @transaction.round_up_boost_in_cents.present? %>
+      <li>
+        <span>Boost</span><br>
+        <small><%= money @transaction.round_up_boost_in_cents, include_sign: false %></small>
+      </li>
+      <% end %>
+      <li>
+        <span>Total</span><br>
+        <small><%= money @transaction.total_amount_in_cents, include_sign: false %></small>
+      </li>
+    </ul>
+  <% end %>
+</div>
