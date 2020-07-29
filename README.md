@@ -1,6 +1,6 @@
 # Search Up App
 
-A Rails app using the Up API.
+A Rails app using the [Up API](https://developer.up.com.au/).
 It includes rake tasks for syncing your Up data to a local db and has a simple search and insights.
 
 ## Install
